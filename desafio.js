@@ -1,5 +1,4 @@
 window.onload = initPage;
-
 function initPage(){
     loadData()
 }
@@ -7,14 +6,10 @@ function initPage(){
 var array = []
 
 const AddTransaction = () => {
-    const transacao = $("#transacao").val()
-    const mercadoria = $("#mercadoria").val()
-    const valor = $("#valor").val()
-
     const infoTransacao = {
-        transacao,
-        mercadoria,
-        valor
+        transacao:$("#transacao").val(),
+        mercadoria:$("#mercadoria").val(),
+        valor:$("#valor").val()
     }
 
     if(localStorage.transacao){
@@ -22,25 +17,29 @@ const AddTransaction = () => {
     }
 
     array.push(infoTransacao)
-
     localStorage.transacao = JSON.stringify(array)
 
-    console.log(JSON.parse(localStorage.getItem('transacao')))
+    loadData()
 }
 
 const loadData = () => {
     var total = 0
-    console.log(JSON.parse(localStorage.getItem('transacao')))
-    const localStorageInfo = JSON.parse(localStorage.getItem('transacao'))
-
-    localStorageInfo.forEach( ({transacao,mercadoria,valor}) => {   
-    const getSymbol = transacao == 'compra' ? '-' : '+'
-    const converToNumber = parseInt(valor)
+    $("#vazio").hide()
+    $("#containerMercadoria p, #containerValor p, #valorTotal p, #lucroPrejuizo p").remove()
     
-    $("#teste").append(getSymbol == '-' ? total-= converToNumber : total += converToNumber, mercadoria,`R$ ${formatValues(converToNumber)}`);
-        console.log(formatValues(converToNumber))
-    })
-    $("#teste").append(`R$ ${total}`)
+    const localStorageInfo = JSON.parse(localStorage.getItem('transacao'))
+    localStorageInfo != null ?     
+        localStorageInfo.forEach( ({transacao,mercadoria,valor}) => {   
+            const getSymbol = transacao == 'compra' ? '-' : '+'
+            const converToNumber = parseInt(valor)
+            total = getSymbol == '-' ? total -= converToNumber : total += converToNumber
+
+            $("#containerMercadoria").append(`<p>${getSymbol} ${mercadoria}</p>`);
+            $("#containerValor").append(`<p>R$ ${formatValues(converToNumber)}</p>`);
+        }) : $("#vazio").show();
+
+    $("#valorTotal").append(`<p>Total</p> <p>R$ ${formatValues(total)}</p>`)
+    $("#lucroPrejuizo").append(`${total > 0 ? "<p>[LUCRO]</p>" : "<p>[PREJUÍZO]</p>"} `)
 }
 
 const formatValues = valor => (valor).toLocaleString('pt-BR', {
