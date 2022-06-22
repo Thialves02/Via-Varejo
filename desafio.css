@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-*{
+* {
     font-family: 'Lato', sans-serif;
-    margin: 0;padding: 0;
+    margin: 0;
+    padding: 0;
     box-shadow: border-box;
 }
 
@@ -14,13 +15,20 @@ nav {
     background-color: #E0E0E0;
 }
 
-#filtros{
+#containerFiltros {
     display: flex;
-    justify-content: center;
-    padding:50px;
+    flex-direction: column;
+    align-items: center;
 }
 
-.filtro{
+#containerFiltros #filtros {
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+    width: 75%;
+}
+
+#containerFiltros #filtros .filtro {
     display: flex;
     flex-direction: column;
     padding: 5px;
@@ -28,34 +36,36 @@ nav {
     margin: 0 10px;
 }
 
-.filtro input,
-.filtro select{
+#containerFiltros #filtros .filtro input,
+#containerFiltros #filtros .filtro select {
     outline: none;
     border-radius: 5px;
-    width:150px;
-    height:25px;
+    width: 150px;
+    height: 25px;
     border: 1px solid #979797;
     padding-left: 10px;
     margin-top: 5px;
 }
 
-#btn{
+#containerFiltros #btn {
     display: flex;
     justify-content: center;
     padding-bottom: 25px;
+    width: 80%;
+    border-bottom: 1px solid #333333;
 }
 
-#btn button{
+#containerFiltros #btn button {
     color: #FFFF;
     background-color: #333333;
     border-radius: 5px;
     border: none;
-    width:25%;
-    height:35px;
+    width: 250px;
+    height: 35px;
     cursor: pointer;
 }
 
-#containerTransacoes{
+#containerTransacoes {
     margin: 25px 0;
     display: flex;
     flex-direction: column;
@@ -63,61 +73,70 @@ nav {
     align-items: center;
 }
 
-#subtitulos{
+#containerTransacoes .transacao {
     display: flex;
     justify-content: space-between;
-    width: 35%;
-    margin: 20px 0;
+    width: 500px;
+    border-bottom: 1px solid #333333;
 }
 
-#containerMercadoria,
-#containerValor{
-    display: flex;
-    flex-direction: column;
-    justify-content:center;
-    
-    flex-wrap: wrap;
-    max-width: 50%;
+#containerTransacoes .transacao h2 {
+    margin: 10px 25px;
+    font-size: 20px;
 }
 
-#containerMercadoria{
-    align-items:flex-start;
+#containerTransacoes .transacao p {
+    padding: 5px 0;
 }
 
-#containerValor{
-    align-items:flex-end;
+#containerTransacoes #transacoes {
+    max-height: 50vh;
+    overflow-y: scroll;
 }
 
-#containerMercadoria h2 ,
-#containerValor h2 {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    padding:0 15px
-}
-
-#containerMercadoria p ,
-#containerValor p {
-    padding:5px 0;
-}
-
-#valorTotal{
+#containerTransacoes #valorTotal {
     display: flex;
     justify-content: space-between;
-    width: 35%;
+    width: 500px;
     font-weight: bold;
+    margin-top: 10px;
 }
 
-#lucroPrejuizo{
+#containerTransacoes #lucroPrejuizo {
     display: flex;
     justify-content: end;
-    width: 35%;
+    width: 500px;
 }
 
-#lucroPrejuizo p{
+#containerTransacoes #lucroPrejuizo p {
     font-size: 13px;
 }
 
-#vazio{
+#containerTransacoes #semTransacao {
     padding: 25px 0;
+}
+
+@media (max-width: 769px) {
+    .transacao,
+    #valorTotal,
+    #lucroPrejuizo {
+        width: 350px !important
+    }
+}
+
+@media (max-width: 550px) {
+    #filtros {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 50px;
+    }
+
+    .filtro,
+    .filtro input,
+    .filtro select {
+        width: 100% !important;
+
+    }
 }
