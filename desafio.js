@@ -30,7 +30,7 @@ const isValid = ({transacao,mercadoria,valor}) => ( transacao == '' || mercadori
 const loadData = () => {
     var total = 0
     $("#semTransacao").hide()
-    $("#transacoes p, #valorTotal p, #lucroPrejuizo p").remove()
+    $("#transacoes div, #valorTotal p, #lucroPrejuizo p").remove()
     
     const localStorageInfo = JSON.parse(localStorage.getItem('transacao'))
     localStorageInfo != null ?     
