@@ -16,16 +16,21 @@ const AddTransaction = () => {
         array = JSON.parse(localStorage.getItem('transacao'))
     }
 
-    array.push(infoTransacao)
-    localStorage.transacao = JSON.stringify(array)
-
-    loadData()
+    isValid(infoTransacao) == true ? (  
+        array.push(infoTransacao), 
+        localStorage.transacao = JSON.stringify(array), 
+        loadData()
+    ) : (
+        alert('Informações Inválidas')
+    )
 }
+
+const isValid = ({transacao,mercadoria,valor}) => ( transacao == '' || mercadoria == '' || valor == '' || valor < 1 ) ? false : true
 
 const loadData = () => {
     var total = 0
-    $("#vazio").hide()
-    $("#containerMercadoria p, #containerValor p, #valorTotal p, #lucroPrejuizo p").remove()
+    $("#semTransacao").hide()
+    $("#transacoes p, #valorTotal p, #lucroPrejuizo p").remove()
     
     const localStorageInfo = JSON.parse(localStorage.getItem('transacao'))
     localStorageInfo != null ?     
@@ -34,15 +39,14 @@ const loadData = () => {
             const converToNumber = parseInt(valor)
             total = getSymbol == '-' ? total -= converToNumber : total += converToNumber
 
-            $("#containerMercadoria").append(`<p>${getSymbol} ${mercadoria}</p>`);
-            $("#containerValor").append(`<p>R$ ${formatValues(converToNumber)}</p>`);
-        }) : $("#vazio").show();
+            $("#transacoes").append(`<div class="transacao"><p>${getSymbol} ${mercadoria}</p><p>R$ ${formatValuesToBRL(converToNumber)}</p></div>`);
+        }) : $("#semTransacao").show();
 
-    $("#valorTotal").append(`<p>Total</p> <p>R$ ${formatValues(total)}</p>`)
+    $("#valorTotal").append(`<p>Total</p> <p>R$ ${formatValuesToBRL(total)}</p>`)
     $("#lucroPrejuizo").append(`${total > 0 ? "<p>[LUCRO]</p>" : "<p>[PREJUÍZO]</p>"} `)
 }
 
-const formatValues = valor => (valor).toLocaleString('pt-BR', {
+const formatValuesToBRL = valor => (valor).toLocaleString('pt-BR', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2
 })
