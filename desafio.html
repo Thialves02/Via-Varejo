@@ -13,7 +13,7 @@
         <nav>
             <h1>Controle Financeiro</h1>
         </nav>
-        <section >
+        <section id="containerFiltros">
             <div id="filtros">
                 <div class="filtro">
                     <label for="transacao">Tipo de transação</label>
@@ -36,16 +36,13 @@
             </div>
         </section>   
         <section id="containerTransacoes">
-            <h1>Extrato de transações</h1>
-            <div id="subtitulos">
-                <div id="containerMercadoria">
-                    <h2>Mercadoria</h2>
-                </div>
-                <div id="containerValor">
-                    <h2>Valor</h2>
-                </div>
+            <h1>Extrato de transações</h1>            
+            <div class="transacao">
+                <h2>Mercadoria</h2>
+                <h2>Valor</h2>
             </div>
-            <div id="vazio">Adicione uma transação para que os dados apareçam</div>
+            <div id="transacoes"></div>               
+            <div id="semTransacao">Adicione uma transação para que os dados apareçam</div>
             <div id="valorTotal"></div>
             <div id="lucroPrejuizo"></div>
         </section>
