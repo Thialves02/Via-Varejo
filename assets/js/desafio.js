@@ -24,7 +24,7 @@ const AddTransaction = () => {
         alert('Informações Inválidas')
     )
 }
-
+    
 const isValid = ({transacao,mercadoria,valor}) => ( transacao == '' || mercadoria == '' || valor == '' || valor < 1 ) ? false : true
 
 const loadData = () => {

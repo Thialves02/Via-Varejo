@@ -1,0 +1,61 @@
+#containerTransacoes {
+    margin: 25px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    & .transacao {
+        display: flex;
+        justify-content: space-between;
+        width: 500px;
+        border-bottom: 1px solid $color-preto;
+
+        & h2 {
+            margin: 10px 25px;
+            font-size: 20px;
+        }
+
+        & p {
+            padding: 5px 0;
+            &:nth-child(1) {
+                max-width: 60%;
+                word-wrap: break-word;
+            }
+        }
+    }
+    & #transacoes {
+        max-height: 50vh;
+        overflow-y: scroll;
+    }
+
+    & #valorTotal {
+        display: flex;
+        justify-content: space-between;
+        width: 500px;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    & #lucroPrejuizo {
+        display: flex;
+        justify-content: end;
+        width: 500px;
+
+        & p {
+            font-size: 13px;
+        }
+    }
+
+    & #semTransacao {
+        padding: 25px 0;
+    }
+}
+
+@media (max-width: 769px) {
+    .transacao,
+    #valorTotal,
+    #lucroPrejuizo {
+        width: 350px !important
+    }
+}

@@ -1,0 +1,72 @@
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 50px;
+    background-color: $color-cinza;
+}
+
+#containerFiltros {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & #filtros {
+        display: flex;
+        justify-content: center;
+        padding: 50px;
+        width: 75%;
+
+        & .filtro {
+            display: flex;
+            flex-direction: column;
+            padding: 5px;
+            width: 150px;
+            margin: 0 10px;
+
+            & input,select{
+                outline: none;
+                border-radius: 5px;
+                width: 150px;
+                height: 25px;
+                border: 1px solid $border-input;
+                padding-left: 10px;
+                margin-top: 5px;
+            }
+        }
+    }
+    & #btn {
+        display: flex;
+        justify-content: center;
+        padding-bottom: 25px;
+        width: 80%;
+        border-bottom: 1px solid $color-preto;
+
+        & button {
+            color: #FFFF;
+            background-color: $color-preto;
+            border-radius: 5px;
+            border: none;
+            width: 250px;
+            height: 35px;
+            cursor: pointer;
+        }
+    }
+}
+
+@media (max-width: 550px) {
+    #filtros {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 50px;
+    }
+
+    .filtro,
+    .filtro input,
+    .filtro select {
+        width: 100% !important;
+
+    }
+}
